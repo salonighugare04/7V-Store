@@ -1,0 +1,236 @@
+/* -----------------------------------------------------------
+   GLOBAL THEME
+----------------------------------------------------------- */
+:root{
+  --cream:#F3E9D7;
+  --brown:#4A2F13;
+  --brown-light:#6A4422;
+  --brown-dark:#2A1808;
+  --card:#ffffff;
+  --muted:#6b5a53;
+  --radius:12px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--cream);
+  color:var(--brown);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* container */
+.container{width:92%;max-width:1200px;margin:0 auto}
+
+/* header */
+header {
+    background: var(--brown); /* Dark brown background */
+    color: white;
+    padding: 12px 0;
+    width: 100%;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between; /* Pushes brand left, cart right */
+    align-items: center;
+    width: 92%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Container for the entire branding area */
+.brand-flex {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 4px;                /* Minimal space between name and tagline */
+    padding: 10px 0;
+}
+
+.brand-top-row {
+    display: flex;
+    flex-direction: row;    
+    align-items: center;    
+    gap: 8px;              
+}
+
+.logo {
+    height: 32px;           /* Matches the size in your reference image */
+    width: auto;
+    border-radius: 4px;     /* Optional: matches the slight curve in your logo */
+}
+
+.brand-top-row h1 {
+    font-size: 1.9rem;      /* Bold brand name as seen in the circle */
+    margin: 0;
+    color: #FFFFFF;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.tagline {
+    font-size: 0.75rem;     /* Small, clean tagline text */
+    margin: 0;
+    color: #FFFFFF;
+    opacity: 0.5;           /* Slight transparency for the secondary line */
+    white-space: nowrap;
+}
+
+/* Cart Toggle Button (The Icon on the Right) */
+#cart-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+#cart-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#cart-count {
+    background: var(--brown-light);
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* hero */
+.hero{padding:28px 0;text-align:center;display: flex;align-items: center}
+.hero-text h2{margin:0;font-size:26px}
+.hero-text p{margin:8px 0 16px;max-width: 900px;color:var(--muted)}
+.btn-primary{background:var(--brown);color:white; padding:10px 16px; margin-top:1px; border-radius:10px;text-decoration:none;border:none;cursor:pointer}
+.btn-primary:disabled{opacity:0.6;cursor:not-allowed}
+.btn-secondary{background:transparent;border:1px solid var(--brown-light);padding:8px 12px;border-radius:8px;color:var(--brown)}
+
+/* main grid */
+.main-grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;margin-bottom:30px}
+
+/* products grid */
+.grid{display:grid;grid-template-columns: repeat(2, 1fr);;gap:20px}
+.product{background:var(--card);height: 100%;border-radius:12px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:10px}
+.product img{width:100%;height:350px;object-fit:cover;aspect-ratio: 1 / 1;border-radius:12px}
+.product h3{margin:6px 0 0;font-size:1rem}
+.product p{margin:4px 0;color:var(--muted)}
+.products-section {max-height: 85vh;overflow-y: auto;padding-right: 15px;}
+.select{padding:8px;border-radius:8px;border:1px solid #e6d7c6;background:#fffdf8}
+
+/* controls */
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.product .add-to-cart{background:var(--brown);color:white;padding:10px;border-radius:8px;border:none;cursor:pointer;width:100%}
+.product .add-to-cart.added{opacity:0.85}
+
+/* cart panel */
+.cart-panel{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 12px 36px rgba(0,0,0,0.08);position:relative}
+.cart-header{display:flex;justify-content:space-between;align-items:center}
+.cart-items{min-height:80px;margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.cart-item{display:flex;gap:10px;align-items:center;background:#f9f5ee;padding:10px;border-radius:10px}
+.cart-item img{width:72px;height:72px;object-fit:cover;border-radius:8px}
+.cart-item-info h4{margin:0;font-size:0.95rem}
+.quantity-controls{display:flex;align-items:center;gap:8px}
+.quantity-btn{background:transparent;border:1px solid var(--brown-light);padding:6px 10px;border-radius:6px;cursor:pointer}
+.remove-btn{background:transparent;border:none;color:#b94b3d;cursor:pointer;font-weight:600}
+.cart-footer{margin-top:12px}
+
+/* cart total */
+.cart-total{display:flex;justify-content:space-between;align-items:center;font-size:1.05rem;margin-bottom:8px}
+
+/* modal */
+.modal{display:none;position:fixed;inset:0;left: 0;top: 0;width: 100%;height: 100%;;background:rgba(0,0,0,0.45);align-items:center;justify-content:center;z-index:1000}   
+.modal[aria-hidden="false"] 
+.modal.open{display:flex}
+.modal-zoom {display: none;transition: 0.3s}
+.modal-content {max-width: 90%;max-height: 80vh; border-radius: 8px;object-fit: contain}
+#imgFull {animation: zoomIn 0.3s}
+@keyframes zoomIn {from {transform: scale(0.5); opacity: 0;}to {transform: scale(1); opacity: 1;} }
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--brown-dark)}
+.close-modal {position: absolute;top: 20px;right: 35px;color: #fff;font-size: 40px;font-weight: bold;cursor: pointer}
+  
+/* Styling for BOTH your Order Form and the Final Summary Modal */
+#order-modal, #orderSummaryModal {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.85);display: none;
+   justify-content: center;align-items: center;z-index: 3000;}
+
+#order-modal .modal-content, 
+#orderSummaryModal .summary-content {
+    background-color: #fff8f0 !important; /* Forces the solid creme color */
+    color: #4a3728; /* Brown text for readability */
+    padding: 25px;
+    border-radius: 15px;
+    width: 95%; /* Slightly wider for mobile comfort */
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto; /* Scrollable for long lists of products */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 3001; /* Sits exactly inside the dark overlay */
+}
+#order-modal.open, #orderSummaryModal.open {display: flex !important;}
+
+/* order form */
+.order-form label{display:block;margin-top:10px}
+.order-form span{display:block;margin-bottom:6px;color:var(--muted)}
+.order-form input, .order-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6d7c6}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+
+/* footer */
+.site-footer{background:var(--brown);color:white;padding:14px;text-align:center;margin-top:30px;border-radius:6px}
+
+/*Logo*/
+.brand {display: flex;align-items: center;gap: 8px;}
+.brand img {height: 34px;width: auto ;max-width: 40px; object-fit: contain;}
+.brand h1 {font-size: 20px;margin: 0;}
+
+#summaryDetails img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr; 
+    gap: 12px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 4px; 
+    padding: 4px; 
+  }
+
+  .product {
+    padding: 6px;          
+    border-radius: 6px;
+    font-size: 0.75rem;
+    margin: 0;    
+  }
+
+  .product img {
+    height: auto;          /* Reset fixed height */
+    aspect-ratio: 1 / 1;   /* Force perfect square shape */
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+
+  .product-info h3 {font-size: 0.75rem;margin-bottom: 2px;}
+  .product-info .price {font-size: 0.8rem;margin-bottom: 5px;}
+  .size-select, .color-select {padding: 2px;font-size: 0.7rem;margin-bottom: 4px;}
+  .add-to-cart {padding: 6px;font-size: 0.7rem;}
+  .brand img {height: 24px;}
+  .brand h1 {font-size: 18px;}
+
+  /* 5. Off-Canvas Cart remains functional */
+  .cart-panel {position: fixed;right: 0;top: 0;height: 100vh;width: 85%;transform: translateX(110%);transition: transform .28s ease;z-index: 60;}
+  .cart-panel.open { transform: translateX(0); }
+}

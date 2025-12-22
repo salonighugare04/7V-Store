@@ -1,0 +1,152 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>7V Store — T-Shirts</title>
+
+  <!-- jsPDF for invoice -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand-flex">
+                <div class="brand-top-row">
+                    <img src="images/logo.jpeg" class="logo" alt="7V_store Logo">
+                    <h1>7V_store</h1>
+                </div>
+                
+                <p class="tagline">Premium Clothing • Best Prices</p>
+            </div>
+        </div>
+        
+        <button id="cart-toggle">
+             🛒 <span id="cart-count">0</span>
+        </button>
+    </div>
+</header>
+
+  <section class="hero container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h2>Comfort. Style. Delivered.</h2>
+        <p>Browse our curated designs — tap Add to Cart, then Checkout to send your order on WhatsApp.</p>
+      </div>
+      <div class="hero-action">
+        <a href="#products" class="btn-primary">Shop Now</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container main-grid">
+    <!-- PRODUCTS -->
+    <section id="products" class="products-section">
+      <h2 class="section-title">Collections</h2>
+      <div id="product-grid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <!-- CART PANEL (keeps one canonical cart) -->
+    <aside id="cart-panel" class="cart-panel" aria-live="polite" aria-hidden="true">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="close-cart" class="modal-close" aria-label="Close cart">&times;</button>
+      </div>
+
+      <div id="cart-items" class="cart-items"></div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <strong>₹<span id="cart-total">0.00</span></strong>
+        </div>
+
+        <button id="checkout-btn" class="btn-primary" disabled>
+          Checkout via WhatsApp
+        </button>
+      </div>
+
+      <small class="cart-note">Checkout opens WhatsApp with a prefilled message — confirm & send to place the order.</small>
+    </aside>
+  </main>
+
+  <!-- CHECKOUT / ORDER MODAL -->
+  <div id="order-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <h3>Checkout — Shipping Info</h3>
+
+      <form id="orderForm" class="order-form">
+        <label>
+          <span>Your name</span>
+          <input type="text" id="name" required placeholder="Full Name" />
+        </label>
+
+        <label>
+          <span>WhatsApp number (for delivery contact)</span>
+          <input type="tel" id="phone" required placeholder="e.g. +91 9XXXXXXXXX" />
+        </label>
+
+        <label>
+          <span>Shipping Address</span>
+          <textarea id="address" rows="3" required placeholder="Street, City, PIN"></textarea>
+        </label>
+        
+        <label>
+         <span>Payment Method</span>
+          <select id="paymentMethod" class="select" required style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd; margin-bottom: 10px;">
+         <option value="Cash on Delivery">Cash on Delivery</option>
+         <option value="UPI / QR Code">UPI / QR Code (Pay Now)</option>
+         </select>
+        </label>
+        
+        <label>
+          <span>Notes (optional)</span>
+          <textarea id="notes" rows="2" placeholder="Size preferences, color request..."></textarea>
+        </label>
+        
+        <div class="form-actions">
+          <button type="button" id="back-to-cart" class="btn-secondary">Back</button>
+          <button type="submit" class="btn-primary">Send Order to WhatsApp</button>
+        </div>
+      </form>
+
+      <p id="order-status" class="order-status" role="status"></p>
+    </div>
+  </div>
+
+  <!-- ORDER SUMMARY (Invoice + final actions) -->
+  <div id="orderSummaryModal" class="modal" aria-hidden="true">
+    <div class="summary-content">
+        <button class="modal-close" id="closeSummary" aria-label="Close">&times;</button>
+        <h2>Order Summary</h2>
+        <div id="summaryDetails"></div>
+        <div id="summaryUploadArea"></div>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button id="downloadPDF" class="btn-secondary">Download Invoice PDF</button>
+          <button id="finalWhatsApp" class="btn-primary">Send to WhatsApp</button>
+        </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> 7V_STORE • All rights reserved</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script src="products.js"></script>
+
+  <div id="imageModal" class="modal-zoom" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center;">
+    <span onclick="closeZoomModal()" style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    <img id="imgFull" style="max-width:90%; max-height:80vh; border-radius:8px; object-fit:contain;">
+  </div>
+</body>
+</html>
