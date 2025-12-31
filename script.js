@@ -126,8 +126,8 @@ function renderProducts(){
     let controlsContent = "";
     if (isSoldOut) {
       controlsContent = `
-        <div style="width:100%; text-align:center; padding: 12px; background:linear-gradient(145deg, #fff5f5, #fed7d7);; border: 2px solid #feb2b2; border-radius:12px;">
-          <span style="color:#c53030; font-weight:900; font-size:20px; letter-spacing:2px;">SOLD OUT</span>
+        <div style="width:100%; text-align:center; padding: 8px; background:linear-gradient(145deg, #fff5f5, #fed7d7);; border: 2px solid #feb2b2; border-radius:10px;">
+          <span style="color:#c53030; font-weight:700; font-size:20px; letter-spacing:1px;">SOLD OUT</span>
         </div>`;
     } else {
       controlsContent = `
@@ -609,3 +609,4 @@ function escapeHtml(str){
   if(!str) return "";
   return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
 }
+
