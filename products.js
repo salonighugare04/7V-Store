@@ -6,7 +6,8 @@ const products = [
     price: 499,
     images: { front: "images/tommyjeans.jpeg", back: "images/tommyjeansback.jpeg" },
     sizes: ["M","L","XL","XXL"],
-    colors: ["Cream"]
+    colors: ["Cream"],
+    soldOut: true
   },
   {
     id: 2,
@@ -121,4 +122,5 @@ const products = [
     colors: ["Brown"]
   },
   
+
 ];
