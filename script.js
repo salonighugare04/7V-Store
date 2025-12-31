@@ -110,6 +110,76 @@ function renderProducts(){
     const imgEl = card.querySelector(`#img-${p.id}`);
     imgEl.addEventListener("click", () => openZoomModal(imgEl.src));
   });
+
+  productGrid.innerHTML = "";
+  products.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "product";
+
+    // 1. Check if the product is sold out
+    const isSoldOut = p.soldOut === true;
+
+    const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
+    const colorOptions = (p.colors || ["Default"]).map(c => `<option value="${c}">${c}</option>`).join("");
+
+    // 2. Define the middle section (Controls)
+    let controlsContent = "";
+    if (isSoldOut) {
+      controlsContent = `
+        <div style="width:100%; text-align:center; padding: 12px; background:linear-gradient(145deg, #fff5f5, #fed7d7);; border: 2px solid #feb2b2; border-radius:12px;">
+          <span style="color:#c53030; font-weight:900; font-size:20px; letter-spacing:2px;">SOLD OUT</span>
+        </div>`;
+    } else {
+      controlsContent = `
+        <div class="controls">
+          <select id="size-${p.id}" class="select">${sizeOptions}</select>
+          <select id="color-${p.id}" class="select">${colorOptions}</select>
+
+          <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+            <button class="toggle-view btn-secondary" data-id="${p.id}" data-view="front">Front</button>
+            <button class="toggle-view btn-secondary" data-id="${p.id}" data-view="back">Back</button>
+          </div>
+        </div>`;
+    }
+
+    // 3. Define the bottom section (Button)
+    let actionButton = "";
+    if (!isSoldOut) {
+      actionButton = `
+        <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+          <button class="add-to-cart btn-primary" data-id="${p.id}">Add to Cart</button>
+        </div>`;
+    }
+
+    card.innerHTML = `
+      <div class="product-image">
+       <img id="img-${p.id}" src="${p.images.front}" alt="${escapeHtml(p.name)}" 
+            style="cursor: zoom-in; ${isSoldOut ? 'opacity: 0.7;' : ''}"> 
+      </div>
+
+      <h3>${escapeHtml(p.name)}</h3>
+      <p class="product-price">₹${p.price.toFixed(0)}</p>
+
+      ${controlsContent}
+      ${actionButton}
+    `;
+
+    productGrid.appendChild(card);
+
+    // 4. Attach listeners ONLY if NOT sold out
+    if (!isSoldOut) {
+      const addBtn = card.querySelector(".add-to-cart");
+      addBtn.addEventListener("click", () => addToCartFromUI(p.id));
+
+      const frontBtn = card.querySelector(".toggle-view[data-view='front']");
+      const backBtn = card.querySelector(".toggle-view[data-view='back']");
+      frontBtn.addEventListener("click", () => changeImage(p.id, "front"));
+      backBtn.addEventListener("click", () => changeImage(p.id, "back"));
+    }
+
+    const imgEl = card.querySelector(`#img-${p.id}`);
+    imgEl.addEventListener("click", () => openZoomModal(imgEl.src));
+  });
 }
 
 // image controls
