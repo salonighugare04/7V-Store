@@ -1,12 +1,20 @@
 // ================== PRODUCTS ==================
 const products = [
   {
-    id: 16,
+    id: 17,
     name: "Zippers",
     price: 479,
     images: { front: "images/zipperfront.jpeg", back: "images/zipperback.jpeg" },
     sizes: ["M","L","XL","XXL"],
     colors: ["White","Black"],
+  },
+  {
+    id: 16,
+    name: "USA Polo Windbreaker Jacket",
+    price: 999,
+    images: { front: "images/USAjacketfront.jpeg", back: "images/USAjacketback.jpeg" },
+    sizes: ["M","L","XL","XXL"],
+    colors: ["White"],
   },
   {
     id: 15,
@@ -132,4 +140,5 @@ const products = [
   },
   
 ];
+
 
