@@ -3,7 +3,7 @@ const products = [
   {
     id: 16,
     name: "Zippers",
-    price: 449,
+    price: 479,
     images: { front: "images/zipperfront.jpeg", back: "images/zipperback.jpeg" },
     sizes: ["M","L","XL","XXL"],
     colors: ["White","Black"],
@@ -132,3 +132,4 @@ const products = [
   },
   
 ];
+
