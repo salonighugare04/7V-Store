@@ -1,6 +1,6 @@
 // ================== CONFIG ==================
 // Put your WhatsApp business number here. If you use only 10 digits (India), script will prepend '91'.
-const BUSINESS_WHATSAPP_NUMBER = "9821357880"; // keep digits only
+const BUSINESS_WHATSAPP_NUMBER = "9112347789"; // keep digits only
 
 // ================ STATE & DOM ================
 let cart = []; // items: { id, name, price, size, color, quantity, front }
@@ -126,8 +126,8 @@ function renderProducts(){
     let controlsContent = "";
     if (isSoldOut) {
       controlsContent = `
-        <div style="width:100%; text-align:center; padding: 8px; background:linear-gradient(145deg, #fff5f5, #fed7d7);; border: 2px solid #feb2b2; border-radius:10px;">
-          <span style="color:#c53030; font-weight:700; font-size:20px; letter-spacing:1px;">SOLD OUT</span>
+        <div style="width:100%; text-align:center; padding: 12px; background:linear-gradient(145deg, #fff5f5, #fed7d7);; border: 2px solid #feb2b2; border-radius:12px;">
+          <span style="color:#c53030; font-weight:900; font-size:20px; letter-spacing:2px;">SOLD OUT</span>
         </div>`;
     } else {
       controlsContent = `
@@ -551,7 +551,7 @@ function handleSubmitOrder(e) {
     const total = cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(0);
     
     // REPLACE '9821357880@ibl' WITH YOUR ACTUAL UPI ID (GPay/PhonePe ID)
-    const myUpiId = "saloni.ghugare04-3@okhdfcbank"; 
+    const myUpiId = "satviadityawork@okaxis"; 
     const upiUrl = `upi://pay?pa=${myUpiId}&pn=7V_Store&am=${total}&cu=INR&tn=Order_from_${name.replace(/\s/g, '_')}`;
 
     let html = `
@@ -573,7 +573,7 @@ function handleSubmitOrder(e) {
                 </a>
 
                 <p style="font-size:12px; color:#666; margin: 10px 0;">-- OR Scan QR --</p>
-                <img src="images/QR.jpeg" alt="QR" style="width:150px; height:150px; display:block; margin: 0 auto;">
+                <img src="images/scanner.jpeg" alt="QR" style="width:150px; height:150px; display:block; margin: 0 auto;">
             </div>`;
 
         uploadArea.innerHTML = `
@@ -609,4 +609,3 @@ function escapeHtml(str){
   if(!str) return "";
   return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
 }
-
